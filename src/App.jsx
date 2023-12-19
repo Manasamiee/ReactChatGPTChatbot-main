@@ -6,7 +6,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 const API_KEY = "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";
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
-  "role": "system", "content": "Explain things like you're talking to a software professional with 2 years of experience."
+  "role": "system", "content": "Hello there! I'm your Health Assistant, designed to make your wait more comfortable and informative. Whether you have questions about your health, need general information, or just want a friendly chat, I'm here for you. Feel free to ask me anything, and let's make your time in the waiting room as pleasant as possible!"
 }
 
 function App() {
