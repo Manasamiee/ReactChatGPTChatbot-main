@@ -5,6 +5,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 
 
 //const PLAYGROUND_API_KEY = process.env.REACT_APP_PLAYGROUND_API_KEY;
+console.log("API Key:", apiKey ? apiKey.substring(0, 4) + "****" : "Not Found");
 
 const apiKey = process.env.REACT_APP_PLAYGROUND_API_KEY;
 
