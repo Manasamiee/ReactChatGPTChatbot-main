@@ -23,5 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 .env
-REACT_APP_PLAYGROUND_API_KEY=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
 
