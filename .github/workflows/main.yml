@@ -13,6 +13,6 @@ jobs:
     - name: Run Script
       run: |
         echo "Running script with API key..."
-        # Replace this line with the command to run your script
+        process.env.PLAYGROUND_API_KEY
       env:
         PLAYGROUND_API_KEY: ${{ secrets.PLAYGROUND_API_KEY }}
