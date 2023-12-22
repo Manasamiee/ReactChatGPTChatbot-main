@@ -1,18 +1,37 @@
-name: Example Workflow
+name: React CI/CD Workflow
 
-on: [push]
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  example_job:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Run Script
-      run: |
-        echo "Running script with API key..."
-        process.env.PLAYGROUND_API_KEY
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Adjust this to match your project's Node.js version
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Tests
+      run: npm test # Remove or modify this if you don't have tests
+
+    - name: Build
+      run: npm run build
+
+    - name: Echo OpenAI API Key (For Debugging Only)
       env:
-        PLAYGROUND_API_KEY: ${{ secrets.PLAYGROUND_API_KEY }}
+        REACT_APP_PLAYGROUND_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |
+        echo "Using OpenAI API Key: $REACT_APP_PLAYGROUND_API_KEY"
+        # Note: This is for debugging purposes. Be careful with echoing secrets.
+        # Remove or comment out this step in production for security.
