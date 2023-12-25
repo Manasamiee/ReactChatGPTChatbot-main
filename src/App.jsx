@@ -4,7 +4,7 @@ import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
 //const PLAYGROUND_API_KEY = process.env.REACT_APP_PLAYGROUND_API_KEY;
-
+require('dotenv').config();
 const apiKey = process.env.REACT_APP_PLAYGROUND_API_KEY;
 
 const systemMessage = {
