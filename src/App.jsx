@@ -64,7 +64,7 @@ function App() {
         ...apiMessages // The messages from our chat with ChatGPT
       ]
     }
-
+console.log(apiKey);
     await fetch("https://api.openai.com/v1/chat/completions", 
     {
       method: "POST",
