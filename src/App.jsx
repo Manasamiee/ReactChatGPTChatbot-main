@@ -64,48 +64,33 @@ function App() {
         ...apiMessages // The messages from our chat with ChatGPT
       ]
     }
-    await fetch("https://api.openai.com/v1/chat/completions", 
-    {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + apiKey,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(apiRequestBody)
-    }).then((data) => {
-      return data.json();
-    }).then((data) => {
-      console.log(data);
-      setMessages([...chatMessages, {
-        message: data.choices[0].message.content,
-        sender: "ChatGPT"
-      }]);
-      setIsTyping(false);
-    });
+   await fetch("https://api.openai.com/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + apiKey,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(apiRequestBody)
+})
+.then(response => response.json())
+.then(data => {
+  // Check if 'choices' exists and has at least one item
+  if (data.choices && data.choices.length > 0) {
+    setMessages([...chatMessages, {
+      message: data.choices[0].message.content,
+      sender: "ChatGPT"
+    }]);
+  } else {
+    // Log an error or handle the case where choices are not as expected
+    console.error('No choices in response:', data);
   }
-
-  return (
-    <div className="App">
-      <div style={{ position:"relative", height: "800px", width: "700px"  }}>
-        <MainContainer>
-          <ChatContainer>       
-            <MessageList 
-              scrollBehavior="smooth" 
-              typingIndicator={isTyping ? <TypingIndicator content="ChatGPT is typing" /> : null}
-            >
-              {messages.map((message, i) => {
-                console.log(message)
-                return <Message key={i} model={message} />
-              })}
-            </MessageList>
-            <MessageInput placeholder="Type message here" onSend={handleSend} />        
-          </ChatContainer>
-        </MainContainer>
-      </div>
-    </div>
-  )
-}
-export default App
+  setIsTyping(false);
+})
+.catch(error => {
+  // Handle any errors in the fetch process
+  console.error('Fetch error:', error);
+  setIsTyping(false);
+});
 export default App
 
 
