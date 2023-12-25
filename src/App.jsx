@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
+import.meta.env.VITE_PLAYGROUND_API_KEY;
 
 //const PLAYGROUND_API_KEY = process.env.REACT_APP_PLAYGROUND_API_KEY;
 const apiKey = process.env.VITE_PLAYGROUND_API_KEY;
